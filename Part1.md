@@ -1,0 +1,101 @@
+# DevOpswithDocker, Part 1
+https://devopswithdocker.com/part1/
+
+## Part 1.1 Getting started
+
+- Run containers
+```shell session
+20:25:50 haza@stream DevOpswithDocker → sudo docker run --name nginx1 -d nginx
+521f1bc14c579352c384a87b4fa6fef5f5e10cb2621dabd722d387951d7d4424
+20:26:05 haza@stream DevOpswithDocker → sudo docker run --name nginx2 -d nginx
+de55876601e95595658df862125fac3ddfaddc0a429e75c02e8fc2233b22fe62
+20:26:08 haza@stream DevOpswithDocker → sudo docker run --name nginx3 -d nginx
+7c7c8103764bd8b48a29fdd95afe065a371bc1ae62b84fe0ac40f69453c4331b
+```
+
+- Check running containers
+```shell session
+$ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+7c7c8103764b        nginx               "/docker-entrypoint.…"   10 seconds ago      Up 9 seconds        80/tcp              nginx3
+de55876601e9        nginx               "/docker-entrypoint.…"   14 seconds ago      Up 12 seconds       80/tcp              nginx2
+521f1bc14c57        nginx               "/docker-entrypoint.…"   17 seconds ago      Up 16 seconds       80/tcp              nginx1
+```
+
+- Stop containers
+```shell session
+$ sudo docker container stop nginx2 nginx3
+nginx2
+nginx3
+```
+
+- **Check final result**
+```shell session
+$ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS               NAMES
+7c7c8103764b        nginx               "/docker-entrypoint.…"   34 seconds ago      Exited (0) 3 seconds ago                       nginx3
+de55876601e9        nginx               "/docker-entrypoint.…"   38 seconds ago      Exited (0) 3 seconds ago                       nginx2
+521f1bc14c57        nginx               "/docker-entrypoint.…"   41 seconds ago      Up 40 seconds              80/tcp              nginx1
+```
+
+## Part 1.2 Cleanup
+
+- Remove containers (forcefully)
+```shell session
+$ sudo docker rm -f nginx1 nginx2 nginx3
+nginx1
+nginx2
+nginx3
+```
+
+- Check running containers
+```
+$ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+
+- Check images
+```shell session
+$ sudo docker images
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+nginx                 latest              4bb46517cac3        10 days ago         133MB
+```
+
+- Remove images
+```shell session
+$ sudo docker rmi nginx
+Untagged: nginx:latest
+Untagged: nginx@sha256:b0ad43f7ee5edbc0effbc14645ae7055e21bc1973aee5150745632a24a752661
+Deleted: sha256:4bb46517cac397bdb0bab6eba09b0e1f8e90ddd17cf99662997c3253531136f8
+Deleted: sha256:80b21afd8140706d5fe3b7106ae6147e192e6490b402bf2dd2df5df6dac13db8
+Deleted: sha256:0f04ae71e99f5ef9021b92f76bac3979e25c98d73a51d33ce76a78da6afa9f27
+Deleted: sha256:9a14852344d88a1fdf8297914729834521ec1c77a27e7e7e394f9c1ef9b87f9d
+Deleted: sha256:74299126f8099031c5bbd4774147f4ab6b0d0c3afcec774be65d4d07b956752e
+Deleted: sha256:d0f104dc0a1f9c744b65b23b3fd4d4d3236b4656e67f776fe13f8ad8423b955c
+```
+
+- Check images
+```
+sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+```
+
+## 1.3 Hello Docker Hub
+
+The secret password is: **"This is the secret message"**. It can be found from "index.js" line 35.
+
+```shell session
+$ sudo docker run -it devopsdockeruh/pull_exercise
+Unable to find image 'devopsdockeruh/pull_exercise:latest' locally
+latest: Pulling from devopsdockeruh/pull_exercise
+8e402f1a9c57: Pull complete
+5e2195587d10: Pull complete
+6f595b2fc66d: Pull complete
+165f32bf4e94: Pull complete
+67c4f504c224: Pull complete
+Digest: sha256:7c0635934049afb9ca0481fb6a58b16100f990a0d62c8665b9cfb5c9ada8a99f
+Status: Downloaded newer image for devopsdockeruh/pull_exercise:latest
+Give me the password: basics
+You found the correct password. Secret message is:
+"This is the secret message"
+```
