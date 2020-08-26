@@ -82,7 +82,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 
 ## 1.3 Hello Docker Hub
 
-The secret password is: **"This is the secret message"**. It can be found from "index.js" line 35.
+The secret password is **"basics"** and the message is **"This is the secret message"**. Password can be found from "index.js" line 35.
 
 ```shell session
 $ sudo docker run -it devopsdockeruh/pull_exercise
