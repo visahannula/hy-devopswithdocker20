@@ -99,3 +99,48 @@ Give me the password: basics
 You found the correct password. Secret message is:
 "This is the secret message"
 ```
+
+## 1.4
+
+The secred message is **"Docker is easy"**. Message can be found in ways below:
+
+```shell
+root@23a7a6512d10:/usr/app# cat Dockerfile
+FROM node:14.4
+
+ARG SECRET_MESSAGE
+ENV SECRET_MESSAGE=$SECRET_MESSAGE
+
+WORKDIR /usr/app
+COPY . .
+
+CMD ["node", "index"]
+root@23a7a6512d10:/usr/app# echo $SECRET_MESSAGE
+Docker is easy
+```
+
+```shell
+root@23a7a6512d10:/usr/app# tail -f logs.txt
+Thu, 27 Aug 2020 20:14:00 GMT
+Secret message is:
+"Docker is easy"
+Thu, 27 Aug 2020 20:14:06 GMT
+Thu, 27 Aug 2020 20:14:09 GMT
+Thu, 27 Aug 2020 20:14:12 GMT
+Thu, 27 Aug 2020 20:14:15 GMT
+Secret message is:
+"Docker is easy"
+Thu, 27 Aug 2020 20:14:21 GMT
+Thu, 27 Aug 2020 20:14:24 GMT
+Thu, 27 Aug 2020 20:14:27 GMT
+^C
+```
+
+## 1.5
+
+Example command to achieve results of the assignment:
+```shell
+$ docker run -it ubuntu sh -c 'apt update && apt install curl; echo "Input website:"; read we
+bsite; echo "Searching.."; sleep 1; curl http://$website;'
+```
+
