@@ -144,3 +144,31 @@ $ docker run -it ubuntu sh -c 'apt update && apt install curl; echo "Input websi
 bsite; echo "Searching.."; sleep 1; curl http://$website;'
 ```
 
+## 1.6
+
+Create Dockerfile:
+```Dockerfile
+FROM devopsdockeruh/overwrite_cmd_exercise
+CMD ["-c 0"]
+```
+
+Build image:
+```shell
+$ sudo docker build -t docker-clock .
+```
+
+Run container:
+```shell
+$ sudo docker run --rm docker-clock
+1
+2
+3
+4
+5
+6
+7
+```
+
+## 1.7
+
+
