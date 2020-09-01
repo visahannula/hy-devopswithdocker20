@@ -171,4 +171,52 @@ $ sudo docker run --rm docker-clock
 
 ## 1.7
 
+* Create [script.sh](exercise_1.7/script.sh) file.
+```sh
+echo "Input website:";
+read website;
+echo "Searching..";
+sleep 1;
+curl http://$website;
+```
+
+* Create [Dockerfile](exercise_1.7/Dockerfile)
+```Dockerfile
+FROM ubuntu:16.04
+COPY ./script.sh /
+RUN apt-get update && apt-get install -y curl
+CMD ["sh", "/script.sh"]
+```
+
+
+**Build image**
+
+Build image and set name as "curler".
+```console
+$ sudo docker build --tag curler .
+```
+Output not shown since it gets and installs many packages.
+
+* Check images
+```console
+$ sudo docker images
+REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE
+curler                              latest              9fd4b31df5d5        11 seconds ago      169MB
+ubuntu                              16.04               4b22027ede29        12 days ago         127MB
+ubuntu                              xenial              4b22027ede29        12 days ago         127MB
+ubuntu                              latest              4e2eef94cd6b        12 days ago         73.9MB
+```
+
+* Run container
+```console
+$ docker run -it --rm curler
+Input website:
+helsinki.fi
+Searching..
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+
+--SNIP--
+```
 
