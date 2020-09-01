@@ -146,7 +146,7 @@ bsite; echo "Searching.."; sleep 1; curl http://$website;'
 
 ## 1.6
 
-Create Dockerfile:
+Create [Dockerfile](exercise_1.6/Dockerfile):
 ```Dockerfile
 FROM devopsdockeruh/overwrite_cmd_exercise
 CMD ["-c 0"]
