@@ -220,3 +220,21 @@ Searching..
 --SNIP--
 ```
 
+# 1.8
+
+**Run**
+```console
+$ touch logs.txt
+$ sudo docker run -v $(pwd)/logs.txt:/usr/app/logs.txt devopsdockeruh/first_volume_exercise
+```
+
+**Check logfile**
+```console
+$ head -n 6 logs.txt
+Thu, 03 Sep 2020 19:46:52 GMT
+Thu, 03 Sep 2020 19:46:55 GMT
+Thu, 03 Sep 2020 19:46:58 GMT
+Thu, 03 Sep 2020 19:47:01 GMT
+Secret message is:
+"Volume bind mount is easy"
+```
