@@ -5,11 +5,11 @@ https://devopswithdocker.com/part1/
 
 - Run containers
 ```console
-20:25:50 haza@stream DevOpswithDocker → sudo docker run --name nginx1 -d nginx
+$ sudo docker run --name nginx1 -d nginx
 521f1bc14c579352c384a87b4fa6fef5f5e10cb2621dabd722d387951d7d4424
-20:26:05 haza@stream DevOpswithDocker → sudo docker run --name nginx2 -d nginx
+$ sudo docker run --name nginx2 -d nginx
 de55876601e95595658df862125fac3ddfaddc0a429e75c02e8fc2233b22fe62
-20:26:08 haza@stream DevOpswithDocker → sudo docker run --name nginx3 -d nginx
+$ sudo docker run --name nginx3 -d nginx
 7c7c8103764bd8b48a29fdd95afe065a371bc1ae62b84fe0ac40f69453c4331b
 ```
 
