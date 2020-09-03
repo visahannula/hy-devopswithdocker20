@@ -4,7 +4,7 @@ https://devopswithdocker.com/part1/
 ## Part 1.1 Getting started
 
 - Run containers
-```shell session
+```console
 20:25:50 haza@stream DevOpswithDocker → sudo docker run --name nginx1 -d nginx
 521f1bc14c579352c384a87b4fa6fef5f5e10cb2621dabd722d387951d7d4424
 20:26:05 haza@stream DevOpswithDocker → sudo docker run --name nginx2 -d nginx
@@ -14,7 +14,7 @@ de55876601e95595658df862125fac3ddfaddc0a429e75c02e8fc2233b22fe62
 ```
 
 - Check running containers
-```shell session
+```console
 $ sudo docker ps -a
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
 7c7c8103764b        nginx               "/docker-entrypoint.…"   10 seconds ago      Up 9 seconds        80/tcp              nginx3
@@ -23,14 +23,14 @@ de55876601e9        nginx               "/docker-entrypoint.…"   14 seconds ag
 ```
 
 - Stop containers
-```shell session
+```console
 $ sudo docker container stop nginx2 nginx3
 nginx2
 nginx3
 ```
 
 - **Check final result**
-```shell session
+```console
 $ sudo docker ps -a
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS               NAMES
 7c7c8103764b        nginx               "/docker-entrypoint.…"   34 seconds ago      Exited (0) 3 seconds ago                       nginx3
@@ -41,7 +41,7 @@ de55876601e9        nginx               "/docker-entrypoint.…"   38 seconds ag
 ## Part 1.2 Cleanup
 
 - Remove containers (forcefully)
-```shell session
+```console
 $ sudo docker rm -f nginx1 nginx2 nginx3
 nginx1
 nginx2
@@ -49,20 +49,20 @@ nginx3
 ```
 
 - Check running containers
-```
+```console
 $ sudo docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
 
 - Check images
-```shell session
+```console
 $ sudo docker images
 REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
 nginx                 latest              4bb46517cac3        10 days ago         133MB
 ```
 
 - Remove images
-```shell session
+```console
 $ sudo docker rmi nginx
 Untagged: nginx:latest
 Untagged: nginx@sha256:b0ad43f7ee5edbc0effbc14645ae7055e21bc1973aee5150745632a24a752661
@@ -75,8 +75,8 @@ Deleted: sha256:d0f104dc0a1f9c744b65b23b3fd4d4d3236b4656e67f776fe13f8ad8423b955c
 ```
 
 - Check images
-```
-sudo docker images
+```console
+$ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ```
 
@@ -84,7 +84,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 
 The secret password is **"basics"** and the message is **"This is the secret message"**. Password can be found from "index.js" line 35.
 
-```shell session
+```console
 $ sudo docker run -it devopsdockeruh/pull_exercise
 Unable to find image 'devopsdockeruh/pull_exercise:latest' locally
 latest: Pulling from devopsdockeruh/pull_exercise
@@ -104,7 +104,7 @@ You found the correct password. Secret message is:
 
 The secred message is **"Docker is easy"**. Message can be found in ways below:
 
-```shell
+```console
 root@23a7a6512d10:/usr/app# cat Dockerfile
 FROM node:14.4
 
@@ -119,7 +119,7 @@ root@23a7a6512d10:/usr/app# echo $SECRET_MESSAGE
 Docker is easy
 ```
 
-```shell
+```console
 root@23a7a6512d10:/usr/app# tail -f logs.txt
 Thu, 27 Aug 2020 20:14:00 GMT
 Secret message is:
@@ -139,7 +139,7 @@ Thu, 27 Aug 2020 20:14:27 GMT
 ## 1.5
 
 Example command to achieve results of the assignment:
-```shell
+```console
 $ docker run -it ubuntu sh -c 'apt update && apt install curl; echo "Input website:"; read we
 bsite; echo "Searching.."; sleep 1; curl http://$website;'
 ```
@@ -153,12 +153,12 @@ CMD ["-c 0"]
 ```
 
 Build image:
-```shell
+```console
 $ sudo docker build -t docker-clock .
 ```
 
 Run container:
-```shell
+```console
 $ sudo docker run --rm docker-clock
 1
 2
