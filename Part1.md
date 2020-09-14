@@ -238,3 +238,32 @@ Thu, 03 Sep 2020 19:47:01 GMT
 Secret message is:
 "Volume bind mount is easy"
 ```
+
+# 1.9
+
+* Run
+
+```console
+$ sudo docker run -p 8088:80/tcp devopsdockeruh/ports_exercise
+
+> ports_exercise@1.0.0 start /usr/app
+> node index.js
+
+Listening on port 80, this means inside of the container. Use -p to map the port to a port of your local machine.
+```
+
+* Check response from another terminal
+
+```console
+$ curl -i localhost:8088
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 28
+ETag: W/"1c-FlnMl0kiaW1T7+FukN6N5hGQtKM"
+Date: Mon, 14 Sep 2020 20:55:15 GMT
+Connection: keep-alive
+
+Ports configured correctly!!
+```
+
