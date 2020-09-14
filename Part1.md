@@ -267,3 +267,45 @@ Connection: keep-alive
 Ports configured correctly!!
 ```
 
+# 1.10
+
+* Create [Dockerfile](exercise_1.10/Dockerfile)
+
+```Dockerfile
+FROM node
+
+EXPOSE 5000
+
+WORKDIR /
+RUN ["git", "clone", "https://github.com/docker-hy/frontend-example-docker.git"]
+WORKDIR /frontend-example-docker
+RUN ["npm", "install"]
+
+ENTRYPOINT ["npm"]
+CMD ["start"]
+```
+
+* Run
+
+```console
+$ sudo docker run -it -p 8088:5000/tcp fe-example-docker-node
+
+> frontend-example-docker@1.0.0 start /frontend-example-docker
+> webpack --mode production && serve -s -l 5000 dist
+
+Hash: 8bd17778258d76927533
+Version: webpack 4.42.1
+Time: 21971ms
+Built at: 09/14/2020 10:27:34 PM
+```
+--SNIP--
+```console
+   ┌────────────────────────────────────────────────┐
+   │                                                │
+   │   Serving!                                     │
+   │                                                │
+   │   - Local:            http://localhost:5000    │
+   │   - On Your Network:  http://172.17.0.2:5000   │
+   │                                                │
+   └────────────────────────────────────────────────┘
+```
