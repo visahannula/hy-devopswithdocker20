@@ -285,6 +285,11 @@ ENTRYPOINT ["npm"]
 CMD ["start"]
 ```
 
+* Build:
+```console
+$ sudo docker build -t fe-example-docker-node .
+```
+
 * Run
 
 ```console
@@ -309,3 +314,70 @@ Built at: 09/14/2020 10:27:34 PM
    │                                                │
    └────────────────────────────────────────────────┘
 ```
+
+# 1.11
+
+Create [Dockerfile](exercise_1.11/Dockerfile)
+
+Dockerfile:
+```Dockerfile
+FROM node
+
+EXPOSE 8000
+
+WORKDIR /
+RUN ["git", "clone", "https://github.com/docker-hy/backend-example-docker.git"]
+WORKDIR /backend-example-docker
+RUN ["npm", "install"]
+
+ENTRYPOINT ["npm"]
+CMD ["start"]
+```
+
+* Build:
+```console
+$ sudo docker build -t be-example-docker-node .
+```
+
+* Create the logs.txt to host:
+```console
+$ sudo touch logs.txt
+```
+
+* Run:
+```console
+$ sudo docker run -d -p 8000:8000/tcp -v $(pwd)/logs.txt:/logs.txt be-example-docker-node
+```
+
+* Test HTTP server:
+```console
+# curl localhost:8000
+Port configured correctly, generated message in logs.txt
+```
+
+* Check log file
+
+```console
+$ cat logs.txt
+1/5/2021, 11:38:31 PM: Connection received in root
+```
+
+* Stop the container and start again
+```console
+$ sudo docker container container stop 1628ed3b759d
+```
+```console
+$ sudo docker run -d -p 8000:8000/tcp -v $(pwd)/logs.txt:/backend-example-docker/logs.txt be-example-docker-node
+```
+
+* Test and check log again (persistense)
+
+```console
+$ curl localhost:8000
+Port configured correctly, generated message in logs.txt
+
+$ cat logs.txt
+1/5/2021, 11:38:31 PM: Connection received in root
+1/5/2021, 11:53:40 PM: Connection received in root
+```
+
