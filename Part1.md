@@ -467,18 +467,60 @@ sudo docker build -t be-example-docker-node .
 Note: Commands ran inside the corresponding exercise directories.
 
 * Run frontend
-```console
-$ sudo docker run -d -p 8088:5000/tcp fe-example-docker-node
-```
+   ```console
+   $ sudo docker run -d -p 8088:5000/tcp fe-example-docker-node
+   ```
 
 * Run backend
-```console
-$ sudo docker run -d -p 8000:8000/tcp -v $(pwd)/logs.txt:/backend-example-docker/logs.txt be-example-docker-node
-```
+  ```console
+  $ sudo docker run -d -p 8000:8000/tcp -v $(pwd)/logs.txt:/backend-example-docker/logs.txt be-example-docker-node
+  ```
 
 ### Test
 
 Image of successful result:
 
 ![Success](exercise_1.12/Exercise_1.12_pingpong_complete.png "Working image")
+
+## Section: Publishing projects in Docker Hub
+
+Created public repo to Docker Hub: [youtube-dl-devopswithdocker](https://hub.docker.com/r/nullazy/youtube-dl-devopswithdocker)
+
+* Build and tag the previous youtube-dl image from Dockerfile (from section ["Bigger complex image"](section-BiggerComplexImage)):
+```console
+$ sudo docker build -t nullazy/youtube-dl-devopswithdocker .
+```
+
+* Push the image to Docker Hub:
+```console
+$ sudo docker push nullazy/youtube-dl-devopswithdocker
+Using default tag: latest
+The push refers to repository [docker.io/nullazy/youtube-dl-devopswithdocker]
+af48c58690ee: Pushed
+228df76292e6: Pushed
+db068fd9844e: Pushed
+3238a32059d7: Pushed
+dcc0cc99372e: Mounted from library/ubuntu
+87c128261339: Mounted from library/ubuntu
+41a253a417e6: Mounted from library/ubuntu
+e06660e80cf4: Mounted from library/ubuntu
+latest: digest: sha256:df3681f94bf1f991c1423aadea62dede3994d6e47dd02a13ebd1f51c4bdc4829 size: 1991
+```
+
+
+## Exercise 1.13
+
+* Build from [Dockerfile](exercise_1.13/Dockerfile):
+```console
+$ sudo docker build -t nullazy/spring-simple-button-devopswithdocker .
+```
+
+* Run
+```console
+$ sudo docker run -it -p 8088:8080 nullazy/spring-simple-button-devopswithdocker
+```
+
+* Test result
+
+![Success](exercise_1.13/devopswithdocker_exercise_1.13_success.png "Success image")
 
