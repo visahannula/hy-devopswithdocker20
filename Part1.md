@@ -100,7 +100,7 @@ You found the correct password. Secret message is:
 "This is the secret message"
 ```
 
-## 1.4
+## Exercise 1.4
 
 The secred message is **"Docker is easy"**. Message can be found in ways below:
 
@@ -136,7 +136,7 @@ Thu, 27 Aug 2020 20:14:27 GMT
 ^C
 ```
 
-## 1.5
+## Exercise 1.5
 
 Example command to achieve results of the assignment:
 ```console
@@ -144,7 +144,7 @@ $ docker run -it ubuntu sh -c 'apt update && apt install curl; echo "Input websi
 bsite; echo "Searching.."; sleep 1; curl http://$website;'
 ```
 
-## 1.6
+## Exercise 1.6
 
 Create [Dockerfile](exercise_1.6/Dockerfile):
 ```Dockerfile
@@ -169,7 +169,7 @@ $ sudo docker run --rm docker-clock
 7
 ```
 
-## 1.7
+## Exercise 1.7
 
 * Create [script.sh](exercise_1.7/script.sh) file.
 ```sh
@@ -220,7 +220,7 @@ Searching..
 --SNIP--
 ```
 
-# 1.8
+## Exercise 1.8
 
 **Run**
 ```console
@@ -239,7 +239,7 @@ Secret message is:
 "Volume bind mount is easy"
 ```
 
-# 1.9
+## Exercise 1.9
 
 * Run
 
@@ -267,7 +267,7 @@ Connection: keep-alive
 Ports configured correctly!!
 ```
 
-# 1.10
+## Exercise 1.10
 
 * Create [Dockerfile](exercise_1.10/Dockerfile)
 
@@ -315,11 +315,10 @@ Built at: 09/14/2020 10:27:34 PM
    └────────────────────────────────────────────────┘
 ```
 
-# 1.11
+## Excercise 1.11
 
-Create [Dockerfile](exercise_1.11/Dockerfile)
+* Create [Dockerfile](exercise_1.11/Dockerfile)
 
-Dockerfile:
 ```Dockerfile
 FROM node
 
