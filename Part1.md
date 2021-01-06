@@ -315,7 +315,7 @@ Built at: 09/14/2020 10:27:34 PM
    └────────────────────────────────────────────────┘
 ```
 
-## Excercise 1.11
+## Exercise 1.11
 
 * Create [Dockerfile](exercise_1.11/Dockerfile)
 
@@ -379,4 +379,97 @@ $ cat logs.txt
 1/5/2021, 11:38:31 PM: Connection received in root
 1/5/2021, 11:53:40 PM: Connection received in root
 ```
+---
+## Exercise 1.12
 
+1. Read docs
+
+Frontend: 
+>By default the expected path to backend is /api. This is where the application will send requests. To manually configure api path run with API_URL environment value set, for example API_URL=http://localhost:8888 npm start or API_URL=<url> npm build
+
+Backend:
+> If your frontend is not running in the same origin, run the server with FRONT_URL=<front-url> npm start (without < >) to allow cross-origin requests.
+
+### Notes about the "lab" environment:
+
+* Backend at _stream:8000_
+* Frontend at _stream:5000_
+   * Actually port is 8088 (5000 is reserved)
+
+Steps:
+1. Modify Dockerfiles
+2. Rebuild containers
+3. Run containers
+4. Test containers
+5. Profit.
+
+### Execute steps
+
+#### 1. Modify Dockerfiles
+
+* **Modify frontend** [Dockerfile](exercise_1.10/Dockerfile) to include running ENV
+
+```Dockerfile
+FROM node
+
+EXPOSE 5000
+
+WORKDIR /
+RUN ["git", "clone", "https://github.com/docker-hy/frontend-example-docker.git"]
+WORKDIR /frontend-example-docker
+RUN ["npm", "install"]
+
+ENV API_URL=http://stream:8000
+
+ENTRYPOINT ["npm"]
+CMD ["start"]
+```
+
+* **Modify backend** [Dockerfile](exercise_1.11/Dockerfile) to include running ENV
+
+```Dockerfile
+FROM node
+
+EXPOSE 8000
+
+WORKDIR /
+RUN ["git", "clone", "https://github.com/docker-hy/backend-example-docker.git"]
+WORKDIR /backend-example-docker
+RUN ["npm", "install"]
+
+ENV FRONT_URL=http://stream:8088
+
+ENTRYPOINT ["npm"]
+CMD ["start"]
+```
+
+
+#### Rebuild containers
+
+* Build frontend
+
+```console
+$ sudo docker build -t fe-example-docker-node .
+```
+
+* Build backend
+```console
+sudo docker build -t be-example-docker-node .
+```
+
+### Run containers
+
+* Run frontend
+```console
+$ sudo docker run -d -p 8088:5000/tcp fe-example-docker-node
+```
+
+* Run backend
+```console
+$ sudo docker run -d -p 8000:8000/tcp -v $(pwd)/logs.txt:/backend-example-docker/logs.txt be-example-docker-node
+```
+
+### Test
+
+Image of successful result:
+[Success](exercise_1.11/Exercise_1.12_pingpong_complete.png Working image)
