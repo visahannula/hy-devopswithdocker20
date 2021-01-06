@@ -379,10 +379,10 @@ $ cat logs.txt
 1/5/2021, 11:38:31 PM: Connection received in root
 1/5/2021, 11:53:40 PM: Connection received in root
 ```
----
+
 ## Exercise 1.12
 
-1. Read docs
+### Notes from source repos
 
 Frontend: 
 >By default the expected path to backend is /api. This is where the application will send requests. To manually configure api path run with API_URL environment value set, for example API_URL=http://localhost:8888 npm start or API_URL=<url> npm build
@@ -392,11 +392,12 @@ Backend:
 
 ### Notes about the "lab" environment:
 
+* Host machine DNS name: "stream"
 * Backend at _stream:8000_
 * Frontend at _stream:5000_
    * Actually port is 8088 (5000 is reserved)
 
-Steps:
+### Steps:
 1. Modify Dockerfiles
 2. Rebuild containers
 3. Run containers
@@ -406,6 +407,8 @@ Steps:
 ### Execute steps
 
 #### 1. Modify Dockerfiles
+
+Note: I'm modifying the Dockerfiles created in 1.10 and 1.11.
 
 * **Modify frontend** [Dockerfile](exercise_1.10/Dockerfile) to include running ENV
 
@@ -446,6 +449,8 @@ CMD ["start"]
 
 #### Rebuild containers
 
+Note: Commands executed inside the corresponding exercise directories.
+
 * Build frontend
 
 ```console
@@ -458,6 +463,8 @@ sudo docker build -t be-example-docker-node .
 ```
 
 ### Run containers
+
+Note: Commands ran inside the corresponding exercise directories.
 
 * Run frontend
 ```console
@@ -472,4 +479,6 @@ $ sudo docker run -d -p 8000:8000/tcp -v $(pwd)/logs.txt:/backend-example-docker
 ### Test
 
 Image of successful result:
-[Success](exercise_1.11/Exercise_1.12_pingpong_complete.png Working image)
+
+![Success](exercise_1.12/Exercise_1.12_pingpong_complete.png "Working image")
+
